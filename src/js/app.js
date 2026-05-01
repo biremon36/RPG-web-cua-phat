@@ -1,6 +1,7 @@
 // Global state
 let chatHistory = [];
-let diamonds = parseInt(localStorage.getItem('rpg_diamonds')) || 10; // Start with 10 free diamonds
+let savedDiamonds = localStorage.getItem('rpg_diamonds');
+let diamonds = savedDiamonds !== null ? parseInt(savedDiamonds) : 10; // Start with 10 free diamonds
 let lastLoginDate = localStorage.getItem('rpg_last_login') || '';
 let loginStreak = parseInt(localStorage.getItem('rpg_login_streak')) || 0;
 
