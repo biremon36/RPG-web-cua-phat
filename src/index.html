@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI RPG Game</title>
+    <link rel="stylesheet" href="css/style.css">
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <div id="app">
+        <!-- Top Navigation / Header -->
+        <header class="top-nav">
+            <div class="nav-left">
+                <button id="toggle-t1" class="panel-btn"><i class="fas fa-users"></i> Tầng 1 (Nhân vật & Quan hệ)</button>
+            </div>
+            <div class="nav-center">
+                <h1>AI RPG Adventure</h1>
+            </div>
+            <div class="nav-right">
+                <div class="diamonds">
+                    <i class="fas fa-gem"></i> <span id="diamond-count">0</span>
+                </div>
+                <button id="daily-login" class="action-btn"><i class="fas fa-calendar-check"></i> Điểm danh</button>
+                <button id="enter-code" class="action-btn"><i class="fas fa-gift"></i> Nhập Code</button>
+                <button id="toggle-t235" class="panel-btn"><i class="fas fa-chart-pie"></i> Tầng 2 & 3.5 (Chỉ số & NPC)</button>
+            </div>
+        </header>
+
+        <!-- Main Game Container -->
+        <main class="game-container">
+            <!-- Left Panel (Tầng 1) -->
+            <aside id="panel-t1" class="side-panel left-panel collapsed">
+                <div class="panel-header">
+                    <h2><i class="fas fa-address-card"></i> Tầng 1: Quản lý Nhân Vật</h2>
+                    <button class="close-btn" data-target="panel-t1"><i class="fas fa-times"></i></button>
+                </div>
+                <div class="panel-content" id="content-t1">
+                    <p class="placeholder-text">Chưa có dữ liệu. Hãy gõ "start" để bắt đầu.</p>
+                </div>
+            </aside>
+
+            <!-- Center Panel (Tầng 3) -->
+            <section class="center-panel">
+                <div id="chat-history" class="chat-history">
+                    <div class="message system-msg">
+                        Chào mừng đến với AI RPG Adventure! Hãy nhập <strong>start</strong> để khởi tạo thế giới của bạn.
+                    </div>
+                </div>
+
+                <div class="input-wrapper">
+                    <div class="toolbar">
+                        <button class="tool-btn" data-insert='""' title="Hành động (VD: &quot;Tôi nhìn quanh&quot;)"><i class="fas fa-running"></i> ""</button>
+                        <button class="tool-btn" data-insert='()' title="Cảm xúc NPC (VD: (Cười lớn))"><i class="fas fa-smile"></i> ()</button>
+                        <button class="tool-btn" data-insert='#check#' title="Dừng truyện để check rủi ro/tỉ lệ"><i class="fas fa-search"></i> #check#</button>
+                        <button class="tool-btn" data-insert='#pause#' title="Tạm dừng game"><i class="fas fa-pause"></i> pause</button>
+                        <button class="tool-btn" data-insert='#go#' title="Tiếp tục game"><i class="fas fa-play"></i> go</button>
+                        <span class="tool-hint">Mẹo: Click để chèn nhanh cú pháp</span>
+                    </div>
+                    <div class="input-area">
+                        <textarea id="user-input" placeholder="Nhập hành động hoặc lời thoại của bạn..." rows="3"></textarea>
+                        <button id="send-btn"><i class="fas fa-paper-plane"></i> Gửi</button>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Right Panel (Tầng 2 & Tầng 3.5) -->
+            <aside id="panel-t235" class="side-panel right-panel collapsed">
+                <div class="panel-header">
+                    <h2><i class="fas fa-heartbeat"></i> Tầng 2: Trạng thái</h2>
+                    <button class="close-btn" data-target="panel-t235"><i class="fas fa-times"></i></button>
+                </div>
+                <div class="panel-content" id="content-t2">
+                    <p class="placeholder-text">Chưa có dữ liệu trạng thái.</p>
+                </div>
+
+                <div class="panel-header separator">
+                    <h2><i class="fas fa-user-secret"></i> Tầng 3.5: Góc khuất NPC</h2>
+                </div>
+                <div class="panel-content" id="content-t35">
+                    <p class="placeholder-text">Chưa có sự kiện NPC.</p>
+                </div>
+            </aside>
+        </main>
+
+        <!-- Modals -->
+        <!-- World Creation Modal -->
+        <div id="create-world-modal" class="modal hidden">
+            <div class="modal-content modal-large">
+                <div class="modal-header">
+                    <h2><i class="fas fa-globe"></i> Khởi Tạo Thế Giới</h2>
+                    <span class="close-modal">&times;</span>
+                </div>
+                <div class="modal-body form-grid">
+                    <div class="form-group">
+                        <label>Bối cảnh thế giới:</label>
+                        <select id="wc-setting">
+                            <option value="Cyberpunk tương lai, công nghệ cao">Cyberpunk tương lai</option>
+                            <option value="Fantasy trung cổ, phép thuật và rồng">Fantasy trung cổ</option>
+                            <option value="Hậu tận thế, sinh tồn Zombie">Hậu tận thế, Zombie</option>
+                            <option value="Hiện đại, học đường, đời thường">Hiện đại học đường</option>
+                            <option value="Tu tiên, võ hiệp phương Đông">Tu tiên, võ hiệp</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Chế độ chơi (Tỉ lệ thành công):</label>
+                        <select id="wc-mode">
+                            <option value="Bình yên (Mọi lựa chọn luôn thành công)">Bình yên 💚</option>
+                            <option value="Bình thường (Dựa theo ngữ cảnh thực tế)">Bình thường 💜</option>
+                            <option value="Khó (Cần đổ xí ngầu/Stat check, có rủi ro)">Khó 💛</option>
+                            <option value="Extreme (Rất khó, dễ chết, có phản bội, cấm hack)">Extreme ❤️</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Thể loại chính:</label>
+                        <input type="text" id="wc-genre" placeholder="Hành động, trinh thám, tình cảm..." value="Hành động, phiêu lưu">
+                    </div>
+                    <div class="form-group">
+                        <label>Mô tả nhân vật của bạn:</label>
+                        <input type="text" id="wc-char" placeholder="Tên, tính cách, ngoại hình..." value="Một kẻ lang thang vô danh">
+                    </div>
+                    <div class="form-group">
+                        <label>Thiết lập phản diện chính:</label>
+                        <input type="text" id="wc-boss" placeholder="Để trống nếu muốn AI tự tạo ngẫu nhiên sau">
+                    </div>
+                    <div class="form-group full-width">
+                        <label>Quyền dẫn dắt của AI (GM):</label>
+                        <select id="wc-gm">
+                            <option value="Tùy biến một chút theo ngữ cảnh, giúp câu chuyện mượt mà">Tùy biến một chút</option>
+                            <option value="Giữ tuyệt đối nguyên văn hành động của tôi, không thêu dệt thêm">Tuyệt đối giữ nguyên hành động</option>
+                            <option value="AI tự dẫn dắt và tạo hành động phụ giùm tôi">AI tự dẫn dắt nhiều</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button id="btn-roll-world" class="action-btn" style="float:left; margin-right: 10px;"><i class="fas fa-dice"></i> Gacha Thế Giới Ngẫu Nhiên</button>
+                    <button id="btn-start-world" class="primary-btn"><i class="fas fa-rocket"></i> Bắt Đầu Hành Trình</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Giftcode Modal -->
+        <div id="giftcode-modal" class="modal hidden">
+            <div class="modal-content">
+                <span class="close-modal">&times;</span>
+                <h2>Nhập Giftcode</h2>
+                <input type="text" id="giftcode-input" placeholder="Nhập mã code tại đây...">
+                <button id="submit-code">Xác nhận</button>
+                <p id="code-message"></p>
+            </div>
+        </div>
+
+        <!-- System Prompt (Hidden, loaded into JS) -->
+        <div id="system-prompt" style="display: none;"></div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="js/gemini.js"></script>
+    <script src="js/app.js"></script>
+</body>
+</html>
