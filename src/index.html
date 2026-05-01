@@ -140,6 +140,18 @@
             </div>
         </div>
 
+        <!-- API Key Modal -->
+        <div id="apikey-modal" class="modal hidden">
+            <div class="modal-content">
+                <span class="close-modal">&times;</span>
+                <h2>Cấu hình API Key (Groq)</h2>
+                <p style="font-size: 0.9rem; color: #aaa; margin-bottom: 10px;">Lưu ý: API Key của bạn chỉ được lưu an toàn trên trình duyệt (LocalStorage).</p>
+                <input type="password" id="apikey-input" placeholder="Nhập Groq API Key của bạn...">
+                <button id="submit-apikey">Lưu cấu hình</button>
+                <p id="apikey-message"></p>
+            </div>
+        </div>
+
         <!-- Giftcode Modal -->
         <div id="giftcode-modal" class="modal hidden">
             <div class="modal-content">
@@ -156,7 +168,7 @@
     </div>
 
     <!-- Scripts -->
-    <script src="js/gemini.js"></script>
+    <script src="js/api.js"></script>
     <script src="js/app.js"></script>
 </body>
 </html>

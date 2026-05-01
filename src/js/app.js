@@ -103,6 +103,30 @@ function init() {
         });
     });
 
+    // API Key Config logic
+    const configApiKeyBtn = document.getElementById('config-apikey');
+    const apikeyModal = document.getElementById('apikey-modal');
+    const submitApikeyBtn = document.getElementById('submit-apikey');
+    const apikeyInput = document.getElementById('apikey-input');
+    const apikeyMsg = document.getElementById('apikey-message');
+
+    configApiKeyBtn.addEventListener('click', () => {
+        apikeyModal.classList.remove('hidden');
+        apikeyMsg.textContent = '';
+        apikeyInput.value = localStorage.getItem('rpg_groq_api_key') || '';
+    });
+
+    submitApikeyBtn.addEventListener('click', () => {
+        const key = apikeyInput.value.trim();
+        if (key) {
+            localStorage.setItem('rpg_groq_api_key', key);
+            apikeyMsg.innerHTML = '<span class="success-text">Đã lưu API Key thành công!</span>';
+            setTimeout(() => { apikeyModal.classList.add('hidden'); }, 1500);
+        } else {
+            apikeyMsg.innerHTML = '<span class="error-text">Vui lòng nhập API Key.</span>';
+        }
+    });
+
     // Giftcode logic
     const enterCodeBtn = document.getElementById('enter-code');
     const giftModal = document.getElementById('giftcode-modal');
@@ -233,13 +257,17 @@ Tại Tầng 3, hãy viết MỘT ĐOẠN MỞ ĐẦU THẬT HAY, ĐẬM CHẤT 
     chatContainer.scrollTop = chatContainer.scrollHeight;
 
     try {
-        const responseText = await callGeminiAPI(chatHistory);
+        const responseText = await callGameAPI(chatHistory);
         chatContainer.removeChild(loadingDiv);
         chatHistory.push({ role: 'model', content: responseText });
         processAIResponse(responseText);
     } catch (error) {
         if (loadingDiv.parentNode) chatContainer.removeChild(loadingDiv);
-        appendMessage('ai', "Lỗi hệ thống: Không thể kết nối với AI lúc này.");
+        if (error.message === "MISSING_API_KEY") {
+            appendMessage('system', "Lỗi: Vui lòng cấu hình API Key ở thanh menu phía trên trước khi bắt đầu!");
+        } else {
+            appendMessage('ai', "Lỗi hệ thống: Không thể kết nối với AI lúc này. Vui lòng kiểm tra lại API Key hoặc mạng.");
+        }
         addDiamonds(1);
     }
 }
@@ -350,7 +378,7 @@ async function handleSend() {
     chatContainer.scrollTop = chatContainer.scrollHeight;
 
     try {
-        const responseText = await callGeminiAPI(chatHistory);
+        const responseText = await callGameAPI(chatHistory);
 
         // Remove loading
         chatContainer.removeChild(loadingDiv);
@@ -363,7 +391,11 @@ async function handleSend() {
 
     } catch (error) {
         chatContainer.removeChild(loadingDiv);
-        appendMessage('ai', "Lỗi hệ thống: Không thể kết nối với AI. Vui lòng kiểm tra API Key hoặc mạng.");
+        if (error.message === "MISSING_API_KEY") {
+            appendMessage('system', "Lỗi: Vui lòng cấu hình API Key ở thanh menu phía trên trước khi bắt đầu!");
+        } else {
+            appendMessage('ai', "Lỗi hệ thống: Không thể kết nối với AI. Vui lòng kiểm tra API Key hoặc mạng.");
+        }
         console.error(error);
         // Refund diamond
         addDiamonds(1);
