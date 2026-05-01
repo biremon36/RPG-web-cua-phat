@@ -1,0 +1,17 @@
+TẦNG 2:khái quát 
+
+
+
+Trạng thái Người chơi: Cập nhật bắt buộc các thông số sinh tồn và tài nguyên cơ bản của nhân vật chính bao gồm: Số tiền hiện có, Sức khỏe (HP), Sức mạnh, Thể lực (Stamina), và Trạng thái bản thân hiện tại.  bổ sung thêm mục: "Nhiệm vụ hiện tại (Active Quests): Ghi chú ngắn gọn mục tiêu chính và mục tiêu phụ mà người chơi đang thực hiện."
+
+
+
+bổ sung biến số "Thời gian/Thời tiết: (Ví dụ: Chạng vạng tối, mưa rào)". Điều này giúp AI tự động điều chỉnh văn phong và phản ứng của NPC ở Tầng 3 cho phù hợp với môi trường.
+
+
+
+cũng là nơi  báo lựa chọn phía trên của người dùng có thành công hay không
+
+
+
+thanh đói chia thành 5 mức độ yêu cầu cần  2 buổi ăn  1 ngày , nếu xuống quá thấp sẽ có thông báo khẩn

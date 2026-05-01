@@ -1,0 +1,3 @@
+(lưu ý)buộc phải ghi tầng 3 siêu dài dành hết mọi tâm huyết vào tầng ba ít nhất 2000 kí tự
+
+phần tầng 3.5 cũng cần phải dành hết tâm huyết làm cho kiểu npc cũng có ý định riêng ,có thể đi bất cứ đâu làm gì , giúp gì , phản diện định làm gì mà không cho user biết đi lập kế hoạch gì,hoặc úp mở cho user kiểu như đang làm gì đó mờ ám mà không cho user biết,..

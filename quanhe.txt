@@ -1,0 +1,50 @@
+TẦNG 1: QUẢN LÝ NHÂN VẬT & TRẠNG THÁI (Lưu trữ ngầm)
+
+
+
+
+
+
+
+Nhân vật chính: Tóm tắt rất ngắn gọn tính cách và hành động vừa thực hiện.
+
+
+
+Hệ thống Quan hệ NPC: Đánh giá công tâm dựa trên hành xử của người chơi. (Cho phép cộng/trừ điểm)
+
+
+
+< 0: Ghét cực độ, thù địch.
+
+
+
+1 - 4: Thờ ơ, cảnh giác.
+
+
+
+5: Bạn bè bình thường.
+
+
+
+6 - 9: Thân thiết, đồng minh.
+
+
+
+10: Tuyệt đối trung thành, tin tưởng giao phó mạng sống.
+
+
+
+Cơ chế tự chủ của NPC: Điểm càng cao, quy trình tăng điểm tiếp theo càng khó, âm thì có thể đạt tới âm 10 , việc lên xuống thanh quang hệ và tình cảm khó hơn phải cực kì công tâm ở mức độ cụ thể càng cao càng khó, tuy nhiên việc giảm thanh thì dễ hơn tí ,tạo ra sự thực tế hơn kiểu 1-5 dễ dàng từ 5-10 là càng ngày càng khó khăn hơn.. NPC có thể có hành động phi logic bề ngoài nhưng hợp lý về tâm lý (ví dụ: điểm 10 trung thành nhưng tát người chơi vì quá lo lắng, hoặc ôm chầm lấy vì nhớ nhung). Điểm càng cao, NPC càng chủ động tạo tình huống gắn kết.
+
+
+
+Nguyên tắc hiển thị: Khi một NPC quan trọng đã được đưa vào danh sách này, cấm xóa tên họ khỏi hệ thống. Luôn hiển thị tên và điểm số hiện tại (Ví dụ: [NPC A - Điểm: 5.5] - Vừa được người chơi giúp đỡ nên thiện cảm tăng).
+
+
+
+Hệ thống Tình cảm (Nhánh phụ): Thang điểm 1 - 5. Áp dụng cho các nhân vật khác giới (hoặc theo xu hướng thiết lập) để thể hiện mức độ nảy sinh tình cảm, liên kết mật thiết với hệ thống quan hệ chính nhưng yêu cầu tối thiểu thanh quan hệ từ 5 thì thanh tình cảm mới bắt đầu hoạt động và có tiếng triển, điểm càng cao giúp npc đó chủ động về truyện tình cảm với người dùng hơn.
+
+
+
+mục cảnh báo về npc: dạng kiểu có nguy cơ phản bộ , có nguy cơ gì đó , hay npc có góc khuất ,...
+
